@@ -4,17 +4,24 @@ const server = express()
 //config. public folder
 server.use(express.static("public"))
 
+//utilizando template engine
+const nunjucks = require("nunjucks")
+nunjucks.configure("src/views", {
+    express: server,
+    noCache: true
+})
+
 // way app config.
 //home page
 //req : requisiçao //res: resposta
-server.get("/", (req,res) =>{
-    res.sendFile(__dirname + "/views/index.html")
+server.get("/", (req, res) => {
+    return res.render("index.html", )
 })
-server.get("/create-point", (req,res) =>{
-    res.sendFile(__dirname + "/views/create-point.html")
+server.get("/create-point", (req, res) => {
+    return res.render("create-point.html")
 })
-server.get("/search-results", (req,res) =>{
-    res.sendFile(__dirname + "/views/search-results.html")
+server.get("/search", (req, res) => {
+    return res.render("search-results.html")
 })
 
 //turn server on
